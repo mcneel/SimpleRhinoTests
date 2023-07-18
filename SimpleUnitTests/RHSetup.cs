@@ -34,9 +34,8 @@ namespace Rhino.Test
             // assemblies to be loaded before this is called.
             RhinoGrasshopperSingleton.InitializeResolver();
         }
-        public RHSetup(string filePath)
+        public RHSetup()
         {
-            FilePath = filePath;
             RhinoGrasshopperSingleton.Instance.InitializeCore();
         }
         public Grasshopper.Kernel.GH_Document Doc
@@ -164,7 +163,7 @@ namespace Rhino.Test
                 _Core = new Rhino.Runtime.InProcess.RhinoCore();
             }
         }
-        void InitializeGrasshopperPlugin()
+        public void InitializeGrasshopperPlugin()
         {
             if (null == _Core) InitializeCore();
             // we do this in a seperate function to absolutely ensure that the core is initialized before we load the GH plugin,
@@ -177,7 +176,7 @@ namespace Rhino.Test
             var ghp = _GHPlugin as Grasshopper.Plugin.GH_RhinoScriptInterface;
             ghp.RunHeadless();
         }
-        void InitializeDocIO()
+        public void InitializeDocIO()
         {
             // we do this in a seperate function to absolutely ensure that the core is initialized before we load the GH plugin,
             // which will happen automatically when we enter the function containing GH references

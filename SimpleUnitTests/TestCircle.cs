@@ -2,6 +2,13 @@ using System;
 using Rhino.Geometry;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using Rhino;
+using System.IO;
+using System.Linq;
+using Rhino.DocObjects;
+using Rhino.FileIO;
+using Rhino.UI;
+using Rhino.Test;
 
 namespace SimpleeRHTests
 {
@@ -17,25 +24,21 @@ namespace SimpleeRHTests
         }
 
         [Test]
-        public void TestCircleInMemoryDocument()
+        public void TestCircleInMemoryFile3dm()
         {
-            var circle = new Circle(12);
-            Assert.AreEqual(12, circle.Radius);
-            Assert.AreEqual(12.0 * Math.PI * 2, circle.Circumference);
-        }
+           string output = Path.GetDirectoryName(GetType().Assembly.Location);
+            string full_path = Path.Combine(output, "circle.3dm");
 
-        [Test]
-        public void TestCircleInDocument()
-        {
-            var circle = new Circle(12);
-            Assert.AreEqual(12, circle.Radius);
-            Assert.AreEqual(12.0 * Math.PI * 2, circle.Circumference);
-        }
+            Circle circle;
 
-        [Test]
-        public void TestCircleInGrasshopper()
-        {
-            var circle = new Circle(12);
+            using (File3dm doc = File3dm.Read(full_path))
+            {
+                var circle_file_3dm_geom = doc.Objects.Select(a => a.Geometry).First();
+
+                Curve curve = (Curve)circle_file_3dm_geom;
+                curve.TryGetCircle(out circle);
+            }
+
             Assert.AreEqual(12, circle.Radius);
             Assert.AreEqual(12.0 * Math.PI * 2, circle.Circumference);
         }

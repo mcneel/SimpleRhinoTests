@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleUnitTests", "SimpleUnitTests\SimpleUnitTests.csproj", "{1D62523F-3892-4A56-A742-417CD6B50AF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleNUnitTests", "SimpleUnitTests\SimpleNUnitTests.csproj", "{1D62523F-3892-4A56-A742-417CD6B50AF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
