@@ -1,4 +1,4 @@
 *.vsidx
-/.vs/*
-/SimpleUnitTests/bin/*
-/SimpleUnitTests/obj/*
+**/.vs/*
+**/bin/*
+**/obj/*
