@@ -6,7 +6,7 @@ Example project to setup unit tests in Rhino >=8 using [Rhino.Testing](https://w
 
 ### Package References
 
-Add these package references to your project (.csproj):
+Add these package references to your project (.csproj). These references ensure your tests are discoverable by the test runner:
 
 ```xml
   <ItemGroup>
@@ -51,6 +51,24 @@ Implement the `Rhino.Testing.Fixtures.RhinoSetupFixture` abstract class in your 
             base.OneTimeTearDown();
 
             // you custom teardown
+        }
+    }
+```
+
+### Test Fixture
+
+Implement the `Rhino.Testing.Fixtures.RhinoTestFixture` abstract class in your test library, add methods for each of your test and make sure to add the `[Test]` attribute to these methods:
+
+```csharp
+    [TestFixture]
+    public sealed class PrimitivesFixture : Rhino.Testing.Fixtures.RhinoTestFixture
+    {
+        [Test]
+        public void TestSDKCircle()
+        {
+            var circle = new Circle(12);
+            Assert.AreEqual(12, circle.Radius);
+            Assert.AreEqual(12.0 * Math.PI * 2, circle.Circumference);
         }
     }
 ```
