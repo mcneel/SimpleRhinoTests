@@ -64,18 +64,16 @@ Implement the `Rhino.Testing.Fixtures.RhinoTestFixture` abstract class in your t
     public sealed class PrimitivesFixture : Rhino.Testing.Fixtures.RhinoTestFixture
     {
         [Test]
-        public void TestSDKCircle()
+        public void YourRhinoTest()
         {
-            var circle = new Circle(12);
-            Assert.AreEqual(12, circle.Radius);
-            Assert.AreEqual(12.0 * Math.PI * 2, circle.Circumference);
+            // you rhino test
         }
     }
 ```
 
 ### Referencing RhinoCommon
 
-If you need to use RhinoCommon (other other Rhino assemblies) in your project, reference them based on the target framework, and make sure they are NOT copied to the build directory as they are shipped with Rhino:
+If you need to use RhinoCommon (other other Rhino assemblies) in your project, reference them based on the target framework, and **make sure they are NOT copied to the build directory** as they are shipped with Rhino:
 
 ```xml
   <PropertyGroup>
