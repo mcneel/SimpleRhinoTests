@@ -98,6 +98,9 @@ If you need to use RhinoCommon (other other Rhino assemblies) in your project, r
 - Build project
 - **Test Explorer** panel will populate with tests for all frameworks the project is being built for.
 - Right-Click on any branch of the test tree to **Run** or **Debug** tests in that branch.
+
+![](./docs/vs-testing.png)
+
 - You can access the test configurations from the main toolbar as shown below:
 
 ![](./docs/test-configs.png)
@@ -123,7 +126,7 @@ If you need to use RhinoCommon (other other Rhino assemblies) in your project, r
 ![](./docs/vscode-testing-gutter.png)
 
 
-### From Rhino
+### From Rhino (Work in Progress)
 
 - Ensure RhinoNUnit plugin is loaded
 - Run `NUnit` command
@@ -151,7 +154,7 @@ dotnet test ./SimpleNUnitTests.sln -f net48
 ```
 ## Automated Testing
 
-### Using Github Actions
+### Using Github Actions (Work in Progress)
 
 An example github workflow is setup under `.github/workflows/main.yml` that triggers running tests on every push to this repository.
 
