@@ -2,11 +2,76 @@
 
 Example project to setup unit tests in Rhino >=8 using [Rhino.Testing](https://www.nuget.org/packages/Rhino.Testing) library.
 
-## Configuration
+## Settin Up Your Project
+
+### Package References
+
+Add these package references to your project (.csproj):
+
+```xml
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
+    <PackageReference Include="Rhino.Testing" Version="8.0.6-beta" />
+  </ItemGroup>
+```
+
+### Rhino.Testing Configuration
 
 Rhino.Testing will use `Rhino.Testing.Configs.xml` file to read `RhinoSystemDirectory` and setup necessary assembly resolvers for the target Rhino.
 
 `Rhino.Testing.Configs.xml` can also contains any other configuration you want for your project. See [Rhino.Testing](https://github.com/mcneel/Rhino.Testing/blob/main/README.md) for more information on how to access the configurations.
+
+Make sure this file is copied onto the build folder (where `Rhino.Testing.dll` exists):
+
+```xml
+  <ItemGroup>
+    <None Update="Rhino.Testing.Configs.xml" CopyToOutputDirectory="always" />
+  </ItemGroup>
+```
+
+### Setup Fixture
+
+Implement the `Rhino.Testing.Fixtures.RhinoSetupFixture` abstract class in your test library to setup and teardown your testing fixture:
+
+```csharp
+    [SetUpFixture]
+    public sealed class SetupFixture : Rhino.Testing.Fixtures.RhinoSetupFixture
+    {
+        public override void OneTimeSetup()
+        {
+            base.OneTimeSetup();
+
+            // your custom setup
+        }
+
+        public override void OneTimeTearDown()
+        {
+            base.OneTimeTearDown();
+
+            // you custom teardown
+        }
+    }
+```
+
+### Referencing RhinoCommon
+
+If you need to use RhinoCommon (other other Rhino assemblies) in your project, reference them based on the target framework, and make sure they are NOT copied to the build directory as they are shipped with Rhino:
+
+```xml
+  <PropertyGroup>
+    <RhinoSystemDirectory>C:\Program Files\Rhino 8\System</RhinoSystemDirectory>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.Contains('net7.0')) == 'true'">
+    <Reference Include="$(RhinoSystemDirectory)\netcore\RhinoCommon.dll" Private="False" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.Contains('net48')) == 'true'">
+    <Reference Include="$(RhinoSystemDirectory)\RhinoCommon.dll" Private="False" />
+  </ItemGroup>
+```
 
 ## Local Testing
 
