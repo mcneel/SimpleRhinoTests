@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('Windows'))">net48;net7.0-windows</TargetFrameworks>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('OSX'))">net7.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <RhinoSystemDirectory>C:\Program Files\Rhino 8\System</RhinoSystemDirectory>
   </PropertyGroup>
