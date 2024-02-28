@@ -4,72 +4,7 @@ Example project to setup unit tests in Rhino >=8 using [Rhino.Testing](https://w
 
 ## Settin Up Your Project
 
-### Package References
-
-Add these package references to your project (.csproj). These references ensure your tests are discoverable by the test runner:
-
-```xml
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
-    <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
-    <PackageReference Include="Rhino.Testing" Version="8.0.6-beta" />
-  </ItemGroup>
-```
-
-### Rhino.Testing Configuration
-
-Rhino.Testing will use `Rhino.Testing.Configs.xml` file to read `RhinoSystemDirectory` and setup necessary assembly resolvers for the target Rhino.
-
-`Rhino.Testing.Configs.xml` can also contains any other configuration you want for your project. See [Rhino.Testing](https://github.com/mcneel/Rhino.Testing/blob/main/README.md) for more information on how to access the configurations.
-
-Make sure this file is copied onto the build folder (where `Rhino.Testing.dll` exists):
-
-```xml
-  <ItemGroup>
-    <None Update="Rhino.Testing.Configs.xml" CopyToOutputDirectory="always" />
-  </ItemGroup>
-```
-
-### Setup Fixture
-
-Implement the `Rhino.Testing.Fixtures.RhinoSetupFixture` abstract class in your test library to setup and teardown your testing fixture:
-
-```csharp
-    [SetUpFixture]
-    public sealed class SetupFixture : Rhino.Testing.Fixtures.RhinoSetupFixture
-    {
-        public override void OneTimeSetup()
-        {
-            base.OneTimeSetup();
-
-            // your custom setup
-        }
-
-        public override void OneTimeTearDown()
-        {
-            base.OneTimeTearDown();
-
-            // you custom teardown
-        }
-    }
-```
-
-### Test Fixture
-
-Implement the `Rhino.Testing.Fixtures.RhinoTestFixture` abstract class in your test library, add methods for each of your test and make sure to add the `[Test]` attribute to these methods:
-
-```csharp
-    [TestFixture]
-    public sealed class PrimitivesFixture : Rhino.Testing.Fixtures.RhinoTestFixture
-    {
-        [Test]
-        public void YourRhinoTest()
-        {
-            // you rhino test
-        }
-    }
-```
+See  [Rhino.Testing README](https://github.com/mcneel/Rhino.Testing/blob/main/README.md) on how to setup your project.
 
 ### Referencing RhinoCommon
 
