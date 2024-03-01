@@ -13,7 +13,7 @@ using NUnit.Framework.Internal;
 namespace SimpleNUnitTests
 {
     [TestFixture]
-    public sealed class PrimitivesFixture : RhinoTestFixture
+    public sealed class TestPrimitives : RhinoTestFixture
     {
         [Test]
         public void TestSDKCircle()
