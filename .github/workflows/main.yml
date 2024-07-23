@@ -24,6 +24,7 @@ jobs:
       id: setup_rhino
       with:
         rhino-version: 8.9
+        email-address: ${{ secrets.EMAIL_ADDRESS }}
         api-key: ${{ secrets.RHINO_API_KEY }}
 
     - name: Get the output time
