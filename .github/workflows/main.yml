@@ -19,8 +19,11 @@ jobs:
       with:
          dotnet-version: 7.0.x
 
-    # - name: Install Rhino
-    #   uses: actions/setup-rhino3d@v1
+    - name: Install Rhino
+      uses: mcneel/setup-rhino3d@v0.0.1
+      with:
+        rhino-version: 8.9
+        api-key: ${{ secrets.RHINO_API_KEY }}
 
     - name: Restore dependencies
       run: dotnet restore
