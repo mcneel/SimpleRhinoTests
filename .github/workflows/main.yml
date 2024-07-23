@@ -21,9 +21,13 @@ jobs:
 
     - name: Install Rhino
       uses: mcneel/setup-rhino3d@v0.0.1
+      id: setup_rhino
       with:
         rhino-version: 8.9
         api-key: ${{ secrets.RHINO_API_KEY }}
+
+    - name: Get the output time
+      run: echo "The time was ${{ steps.setup_rhino.outputs.time }}"
 
     - name: Restore dependencies
       run: dotnet restore
