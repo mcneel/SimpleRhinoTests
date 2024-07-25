@@ -23,12 +23,11 @@ jobs:
          dotnet-version: 7.0.x
 
     - name: Install Rhino
-      uses: mcneel/setup-rhino3d@v0.0.1-beta
+      uses: mcneel/setup-rhino3d@v0.0.2-beta
       id: setup_rhino
       with:
         rhino-version: 8.9
         email-address: ${{ secrets.EMAIL_ADDRESS }}
-        rhino-token: ${{ secrets.RHINO_TOKEN }}
 
     - name: Restore dependencies
       run: dotnet restore
