@@ -25,10 +25,7 @@ jobs:
       with:
         rhino-version: 8.9
         email-address: ${{ secrets.EMAIL_ADDRESS }}
-        api-key: ${{ secrets.RHINO_API_KEY }}
-
-    - name: Get the output time
-      run: echo "The time was ${{ steps.setup_rhino.outputs.time }}"
+        rhino-token: ${{ secrets.RHINO_TOKEN }}
 
     - name: Restore dependencies
       run: dotnet restore
