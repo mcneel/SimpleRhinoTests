@@ -2,9 +2,12 @@ name: Rhino Tests
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
   pull_request:
     branches: [ "main" ]
+
+env:
+  RHINO_TOKEN: ${{ secrets.RHINO_TOKEN }}
 
 jobs:
   build:
@@ -20,10 +23,11 @@ jobs:
          dotnet-version: 7.0.x
 
     - name: Install Rhino
-      uses: mcneel/setup-rhino3d@v0.0.1
+      uses: mcneel/setup-rhino3d@v0.0.2-beta
+      id: setup_rhino
       with:
         rhino-version: 8.9
-        api-key: ${{ secrets.RHINO_API_KEY }}
+        email-address: ${{ secrets.EMAIL_ADDRESS }}
 
     - name: Restore dependencies
       run: dotnet restore
@@ -32,4 +36,4 @@ jobs:
       run: dotnet build --no-restore
     
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --framework "net7.0-windows"
