@@ -23,7 +23,7 @@ jobs:
          dotnet-version: 7.0.x
 
     - name: Install Rhino
-      uses: mcneel/setup-rhino3d@v0.0.2-beta
+      uses: mcneel/setup-rhino3d@v0.0.3-beta
       id: setup_rhino
       with:
         rhino-version: 8.9
