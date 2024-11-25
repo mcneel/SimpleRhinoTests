@@ -23,7 +23,7 @@ jobs:
          dotnet-version: 7.0.x
 
     - name: Install Rhino
-      uses: mcneel/setup-rhino3d@v1.0.0
+      uses: mcneel/setup-rhino3d@v2
       id: setup_rhino
       with:
         email-address: ${{ secrets.EMAIL_ADDRESS }}
